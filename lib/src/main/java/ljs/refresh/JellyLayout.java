@@ -1,4 +1,4 @@
-package uk.co.imallan.jellyrefresh;
+package ljs.refresh;
 
 import android.content.Context;
 import android.graphics.Canvas;

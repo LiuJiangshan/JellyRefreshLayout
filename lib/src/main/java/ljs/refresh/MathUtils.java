@@ -1,4 +1,4 @@
-package uk.co.imallan.jellyrefresh;
+package ljs.refresh;
 
 /**
  * Created by yilun

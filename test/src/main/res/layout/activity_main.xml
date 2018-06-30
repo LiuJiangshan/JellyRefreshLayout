@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="?colorPrimary"
+        android:background="@color/primary"
         android:minHeight="?actionBarSize"
-        android:theme="@style/Toolbar.Light"/>
+        android:theme="@style/Toolbar.Light" />
 
-    <uk.co.imallan.jellyrefresh.JellyRefreshLayout
+    <ljs.refresh.JellyRefreshLayout
         android:id="@+id/jelly_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,11 +34,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:text="@string/lorem_ipsum"/>
+                android:text="text" />
 
         </ScrollView>
 
-    </uk.co.imallan.jellyrefresh.JellyRefreshLayout>
+    </ljs.refresh.JellyRefreshLayout>
 
 
 </RelativeLayout>

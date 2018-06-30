@@ -1,4 +1,4 @@
-package uk.co.imallan.jellyrefresh;
+package ljs.refresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import uk.co.imallan.jellyrefresh.R;
 
 public class JellyRefreshLayout extends PullToRefreshLayout implements PullToRefreshLayout.PullToRefreshPullingListener {
 

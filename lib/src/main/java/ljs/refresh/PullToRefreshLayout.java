@@ -1,4 +1,4 @@
-package uk.co.imallan.jellyrefresh;
+package ljs.refresh;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -310,7 +310,6 @@ public class PullToRefreshLayout extends FrameLayout {
                         .start();
             }
         } else {
-            if (!isRefreshing()) return;
             if (mChildView != null) {
                 mChildView.animate().translationY(0)
                         .setListener(null)
