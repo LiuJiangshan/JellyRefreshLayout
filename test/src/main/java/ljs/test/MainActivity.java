@@ -16,18 +16,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(uk.co.imallan.jellyrefreshlayout.R.layout.activity_main);
-        Toolbar toolbar = findViewById(uk.co.imallan.jellyrefreshlayout.R.id.toolbar);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Jelly");
-        mJellyLayout = findViewById(uk.co.imallan.jellyrefreshlayout.R.id.jelly_refresh);
+        mJellyLayout = findViewById(R.id.jelly_refresh);
         mJellyLayout.setPullToRefreshListener(new PullToRefreshLayout.PullToRefreshListener() {
             @Override
             public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
                 pullToRefreshLayout.setRefreshing(false);
             }
         });
-        View loadingView = LayoutInflater.from(this).inflate(uk.co.imallan.jellyrefreshlayout.R.layout.view_loading, null);
+        View loadingView = LayoutInflater.from(this).inflate(R.layout.view_loading, null);
         mJellyLayout.setLoadingView(loadingView);
     }
 }
