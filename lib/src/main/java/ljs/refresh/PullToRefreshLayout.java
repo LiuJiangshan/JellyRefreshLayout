@@ -2,11 +2,12 @@ package ljs.refresh;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,30 +60,27 @@ public class PullToRefreshLayout extends FrameLayout {
 
     public PullToRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs);
     }
 
-    private void init() {
-        if (isInEditMode()) {
-            return;
+    private void init(Context context, AttributeSet attrs) {
+
+        if (isInEditMode()) return;
+
+        if (getChildCount() > 1) throw new RuntimeException("You can only attach one child");
+
+        TypedArray typedArray = null;
+
+        try {
+            typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PullToRefreshLayout);
+            Resources resources = context.getResources();
+            mHeaderHeight = typedArray.getDimension(R.styleable.PullToRefreshLayout_headerHeight, resources.getDimension(R.dimen.defaultHeaderHeight));
+            mPullHeight = typedArray.getDimension(R.styleable.PullToRefreshLayout_pullHeight, resources.getDimension(R.dimen.defaultPullHeight));
+            mTriggerHeight = typedArray.getDimension(R.styleable.PullToRefreshLayout_triggerHeight, resources.getDimension(R.dimen.defaultTriggerHeight));
+        } finally {
+            assert typedArray != null;
+            typedArray.recycle();
         }
-
-        if (getChildCount() > 1) {
-            throw new RuntimeException("You can only attach one child");
-        }
-
-
-        mPullHeight = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                150,
-                getContext().getResources().getDisplayMetrics());
-
-        mHeaderHeight = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                56,
-                getContext().getResources().getDisplayMetrics());
-
-        mTriggerHeight = mHeaderHeight;
 
         this.post(() -> {
             mChildView = getChildAt(0);
@@ -108,11 +106,8 @@ public class PullToRefreshLayout extends FrameLayout {
     }
 
     private void setUpChildViewAnimator() {
-        if (mChildView == null) {
-            return;
-        }
-        mChildView.animate().setInterpolator(new DecelerateInterpolator());
-        mChildView.animate().setUpdateListener(valueAnimator -> {
+        if (mChildView == null) return;
+        ViewCompat.animate(mChildView).setInterpolator(new DecelerateInterpolator()).setUpdateListener(valueAnimator -> {
             if (mPullToRefreshPullingListener != null) {
                 mPullToRefreshPullingListener.onTranslationYChanged(mChildView.getTranslationY());
             }
@@ -125,20 +120,18 @@ public class PullToRefreshLayout extends FrameLayout {
 
     @Override
     public void addView(@NonNull View child) {
-        if (getChildCount() >= 1) {
+        if (getChildCount() >= 1)
             throw new RuntimeException("You can only attach one child");
-        }
         mChildView = child;
         super.addView(child);
         setUpChildViewAnimator();
     }
 
     public boolean canChildScrollUp() {
-        if (mChildView == null) {
-            return false;
-        }
 
-        return ViewCompat.canScrollVertically(mChildView, -1);
+        if (mChildView == null) return false;
+
+        return mChildView.canScrollVertically(-1);
     }
 
     @State

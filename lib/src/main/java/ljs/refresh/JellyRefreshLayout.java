@@ -36,13 +36,7 @@ public class JellyRefreshLayout extends PullToRefreshLayout implements PullToRef
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.JellyRefreshLayout);
         try {
             int color = a.getColor(R.styleable.JellyRefreshLayout_jellyColor, Color.WHITE);
-            float height = a.getDimension(R.styleable.JellyRefreshLayout_headerHeight, mHeaderHeight);
-            float pullHeight = a.getDimension(R.styleable.JellyRefreshLayout_pullHeight, mPullHeight);
-            float triggerHeight = a.getDimension(R.styleable.JellyRefreshLayout_pullHeight, mTriggerHeight);
             mJellyLayout.setColor(color);
-            mHeaderHeight = height;
-            mPullHeight = pullHeight;
-            mTriggerHeight = triggerHeight;
         } finally {
             a.recycle();
         }

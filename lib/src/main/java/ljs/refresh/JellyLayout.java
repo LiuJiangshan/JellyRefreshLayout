@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 
-class JellyLayout extends FrameLayout {
+public class JellyLayout extends FrameLayout {
 
     private Paint mPaint;
     private Path mPath;
@@ -22,8 +22,8 @@ class JellyLayout extends FrameLayout {
     private int mColor = Color.GRAY;
     private ViewOutlineProvider mViewOutlineProvider;
     private float mPointX;
-    float mHeaderHeight = 0;
-    float mPullHeight = 0;
+    public float mHeaderHeight = 0;
+    public float mPullHeight = 0;
 
     public JellyLayout(Context context) {
         this(context, null);

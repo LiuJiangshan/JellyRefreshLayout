@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="defaultHeaderHeight">40dp</dimen>
+    <dimen name="defaultPullHeight">40dp</dimen>
+    <dimen name="defaultTriggerHeight">40dp</dimen>
+</resources>
